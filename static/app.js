@@ -341,13 +341,39 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // Cognitive Psychologist insight
+    // Cognitive Psychologist insight with highlighted phrases & triggers
     const psych = result.psychologist || {};
-    if (psych.cognitive_assessment) {
-      psychInsightContent.innerHTML = `<strong>Tactic:</strong> ${psych.primary_tactic || 'General'}<br>${psych.cognitive_assessment}`;
-    } else {
-      psychInsightContent.textContent = "Standard psychological baseline observed.";
+    let psychHtml = `
+      <div style="margin-bottom: 8px;">
+        <span style="background: rgba(168,85,247,0.2); color: #d8b4fe; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 9999px;">
+          Score: ${psych.manipulation_score || 0}/100 (${psych.manipulation_category || 'EVALUATED'})
+        </span>
+        <strong style="margin-left: 8px; color: #fff;">Primary Vector:</strong> ${psych.primary_tactic || 'General'}
+      </div>
+      <p style="margin-bottom: 10px; font-size: 0.86rem; color: #cbd5e1;">${psych.cognitive_assessment || 'Standard psychological baseline observed.'}</p>
+    `;
+
+    const triggers = psych.detected_triggers || [];
+    if (triggers.length > 0) {
+      psychHtml += `<div style="font-size: 0.78rem; font-weight: 700; color: #c084fc; margin-bottom: 6px; text-transform: uppercase;">Highlighted Behavioral Exploits:</div>`;
+      psychHtml += `<div style="display: flex; flex-direction: column; gap: 6px;">`;
+      triggers.forEach(t => {
+        psychHtml += `
+          <div style="background: rgba(0,0,0,0.3); border-left: 2px solid #c084fc; padding: 6px 10px; border-radius: 4px; font-size: 0.8rem;">
+            <span style="color: #f3e8ff; font-weight: 600;">[${t.trigger}]</span>
+            <span style="color: #fde047; font-style: italic;">"${t.quote}"</span>
+            <div style="color: #94a3b8; font-size: 0.75rem; margin-top: 2px;">→ ${t.psychological_intent}</div>
+          </div>
+        `;
+      });
+      psychHtml += `</div>`;
     }
+
+    if (psych.target_vulnerability) {
+      psychHtml += `<div style="font-size: 0.75rem; color: #a855f7; margin-top: 8px;">🎯 <strong>Susceptible demographic:</strong> ${psych.target_vulnerability}</div>`;
+    }
+
+    psychInsightContent.innerHTML = psychHtml;
 
     // Defensive Action Plan
     actionPlanList.innerHTML = "";
