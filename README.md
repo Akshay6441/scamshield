@@ -162,7 +162,7 @@ When an SMS claiming to be from USPS contains `https://usps-parcel-track-update.
 
 2. **Clone and install dependencies:**
    ```bash
-   git clone https://github.com/akshaymaddula/scamshield.git
+   git clone https://github.com/Akshay6441/scamshield.git
    cd scamshield
    pip install -r requirements.txt
    ```
