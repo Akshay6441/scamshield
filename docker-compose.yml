@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  scamshield:
+    build: .
+    container_name: scamshield-defense
+    ports:
+      - "8000:8000"
+    environment:
+      - NEBIUS_API_KEY=${NEBIUS_API_KEY}
+      - NEBIUS_BASE_URL=${NEBIUS_BASE_URL:-https://api.studio.nebius.com/v1/}
+      - NEMOTRON_ULTRA=${NEMOTRON_ULTRA:-nvidia/Llama-3.1-Nemotron-70B-Instruct-HF}
+      - NEMOTRON_NANO=${NEMOTRON_NANO:-nvidia/llama-3.1-nemotron-nano-8b-v1}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+      - HOST=0.0.0.0
+      - PORT=8000
+    restart: unless-stopped

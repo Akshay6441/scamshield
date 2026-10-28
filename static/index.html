@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScamShield — Autonomous Multi-Agent Scam Defense</title>
+  <meta name="description" content="Multi-agent digital fraud & scam detection powered by NVIDIA Nemotron (Ultra 70B & Nano 8B) on Nebius Token Factory with Tavily Live Threat Intelligence.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <!-- Ambient background glow -->
+  <div class="glow-bg"></div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-inner container">
+      <div class="logo-group">
+        <div class="shield-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="M9 12l2 2 4-4" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">ScamShield</div>
+          <div class="brand-subtitle">Autonomous AI Fraud Defense</div>
+        </div>
+      </div>
+
+      <!-- Partner & Architecture Badges -->
+      <div class="header-badges">
+        <span class="badge badge-nebius">
+          <span class="dot pulse"></span> Nebius Token Factory
+        </span>
+        <span class="badge badge-nvidia">
+          <span class="dot"></span> NVIDIA Nemotron (Ultra 70B &amp; Nano 8B)
+        </span>
+        <span class="badge badge-tavily">
+          <span class="dot"></span> Tavily Live Threat Intel
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+      <div class="pill-track">
+        <span class="pill-spark">⚡</span> Nebius × NVIDIA Global AI Hackathon • <strong>Best Apps &amp; Agents Track</strong>
+      </div>
+      <h1 class="hero-heading">
+        Stop Digital Scams Before They Strike.
+      </h1>
+      <p class="hero-lead">
+        Paste any suspicious SMS, WhatsApp message, email, or URL. Three specialized agents—inspecting live threat databases with <strong>Tavily</strong>, deconstructing social engineering with <strong>Nemotron Ultra 70B</strong>, and deliberating verdicts with <strong>Nemotron Nano 8B</strong>—protect you in real time.
+      </p>
+    </section>
+
+    <!-- Quick Test Benchmark Selector for Judges -->
+    <section class="benchmarks-panel">
+      <div class="benchmarks-header">
+        <span class="benchmark-title">⚡ Rapid Test Benchmarks (Click to load realistic test cases):</span>
+      </div>
+      <div class="benchmark-buttons" id="benchmarkButtons">
+        <!-- Injected via JavaScript -->
+        <button class="benchmark-btn" data-id="usps-phishing">📦 USPS Delivery Smishing</button>
+        <button class="benchmark-btn" data-id="bank-impersonation">🏦 Chase Bank OTP Theft</button>
+        <button class="benchmark-btn" data-id="telegram-job-scam">💼 Telegram YouTube Job Scam</button>
+        <button class="benchmark-btn" data-id="ceo-giftcard">👔 CEO Apple Gift Card (BEC)</button>
+        <button class="benchmark-btn benchmark-safe" data-id="legit-amazon">✅ Legitimate Amazon Order</button>
+      </div>
+    </section>
+
+    <!-- Input Section -->
+    <section class="input-card">
+      <div class="input-card-header">
+        <label for="scamInput" class="input-label">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          Suspicious Content to Investigate
+        </label>
+        <div class="input-actions">
+          <button type="button" class="action-btn" id="pasteBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+            Paste Clipboard
+          </button>
+          <button type="button" class="action-btn" id="clearBtn">Clear</button>
+        </div>
+      </div>
+
+      <textarea 
+        id="scamInput" 
+        class="scam-textarea" 
+        rows="5" 
+        placeholder="Paste suspicious text message, WhatsApp forward, bank alert, link, email, or sender phone number here... (e.g. 'USPS: Your package cannot be delivered...')"
+      ></textarea>
+
+      <div class="input-footer">
+        <div class="model-routing-info">
+          <span class="info-chip">Agent 1: Tavily Live Intel</span>
+          <span class="info-arrow">→</span>
+          <span class="info-chip">Agent 2: Nemotron Ultra 70B</span>
+          <span class="info-arrow">→</span>
+          <span class="info-chip">Agent 3: Nemotron Nano 8B</span>
+        </div>
+        <button id="analyzeBtn" class="btn-primary">
+          <span class="btn-icon">🛡️</span>
+          <span class="btn-text">Investigate Threats</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Live Multi-Agent Investigation Radar (Visible during scan) -->
+    <section id="investigationSection" class="investigation-section hidden">
+      <div class="section-title-wrap">
+        <div class="radar-ping"></div>
+        <h2 class="section-title">Autonomous Multi-Agent Investigation in Progress</h2>
+      </div>
+
+      <!-- 3 Agent Cards -->
+      <div class="agent-cards-grid">
+        <!-- Agent 1 Card -->
+        <div class="agent-card" id="agentCardInvestigator">
+          <div class="agent-card-header">
+            <div class="agent-avatar agent-inv">🔍</div>
+            <div>
+              <div class="agent-name">Cyber Threat Investigator</div>
+              <div class="agent-role">Tavily Live Search API</div>
+            </div>
+            <div class="agent-status" id="statusInv">Standby</div>
+          </div>
+          <p class="agent-desc">Scanning live phishing directories, whois domains, phone fraud records &amp; community threat feeds.</p>
+          <div class="agent-live-output" id="outputInv">Waiting for telemetry dispatch...</div>
+        </div>
+
+        <!-- Agent 2 Card -->
+        <div class="agent-card" id="agentCardPsychologist">
+          <div class="agent-card-header">
+            <div class="agent-avatar agent-psych">🧠</div>
+            <div>
+              <div class="agent-name">Cognitive Psychologist</div>
+              <div class="agent-role">NVIDIA Nemotron Ultra 70B</div>
+            </div>
+            <div class="agent-status" id="statusPsych">Standby</div>
+          </div>
+          <p class="agent-desc">Deconstructing social engineering tactics: manufactured urgency, fear triggers, coercion &amp; authority spoofing.</p>
+          <div class="agent-live-output" id="outputPsych">Awaiting forensic context...</div>
+        </div>
+
+        <!-- Agent 3 Card -->
+        <div class="agent-card" id="agentCardJudge">
+          <div class="agent-card-header">
+            <div class="agent-avatar agent-judge">⚖️</div>
+            <div>
+              <div class="agent-name">Judicial Arbiter &amp; Tactician</div>
+              <div class="agent-role">NVIDIA Nemotron Nano 8B</div>
+            </div>
+            <div class="agent-status" id="statusJudge">Standby</div>
+          </div>
+          <p class="agent-desc">Adversarial deliberation: synthesizing external threat data with cognitive pressure to render final ruling.</p>
+          <div class="agent-live-output" id="outputJudge">Waiting for deliberation phase...</div>
+        </div>
+      </div>
+
+      <!-- Live Terminal Stream -->
+      <div class="terminal-card">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="dot-red"></span>
+            <span class="dot-yellow"></span>
+            <span class="dot-green"></span>
+          </div>
+          <div class="terminal-title">AGENT_TELEMETRY_STREAM.log</div>
+          <div class="terminal-indicator">LIVE SSE</div>
+        </div>
+        <div class="terminal-body" id="terminalLogs">
+          <!-- Live events streamed here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Final Ruling Dashboard (Visible on completion) -->
+    <section id="resultsSection" class="results-section hidden">
+      <!-- Verdict Banner -->
+      <div class="verdict-banner" id="verdictBanner">
+        <div class="verdict-main">
+          <div class="verdict-badge" id="verdictBadge">ANALYZING</div>
+          <h2 class="verdict-title" id="verdictTitle">Verdict Rendered</h2>
+          <p class="verdict-summary" id="verdictSummary"></p>
+        </div>
+        <div class="risk-score-box">
+          <div class="score-circle">
+            <div class="score-number" id="riskScore">--</div>
+            <div class="score-unit">/100</div>
+          </div>
+          <div class="score-label">Threat Risk Index</div>
+          <div class="confidence-label" id="confidenceLevel">Confidence: --%</div>
+        </div>
+      </div>
+
+      <!-- Findings & Defense Grid -->
+      <div class="results-grid">
+        <!-- Red Flags Panel -->
+        <div class="result-card">
+          <div class="result-card-header">
+            <span class="result-icon">🚩</span>
+            <h3 class="result-heading">Forensic Red Flags Detected</h3>
+          </div>
+          <ul class="red-flags-list" id="redFlagsList">
+            <!-- Injected via JS -->
+          </ul>
+
+          <div class="psych-insight-box" id="psychInsightBox">
+            <div class="insight-label">🧠 Cognitive Psychology Profile</div>
+            <div class="insight-content" id="psychInsightContent"></div>
+          </div>
+        </div>
+
+        <!-- Action Plan Panel -->
+        <div class="result-card">
+          <div class="result-card-header">
+            <span class="result-icon">🛡️</span>
+            <h3 class="result-heading">Recommended Defensive Protocol</h3>
+          </div>
+          <ol class="action-plan-list" id="actionPlanList">
+            <!-- Injected via JS -->
+          </ol>
+
+          <!-- Safe Response Generator -->
+          <div class="counter-response-box">
+            <div class="counter-header">
+              <span class="counter-title">💬 Safe Disarming Counter-Response</span>
+              <button class="btn-copy-small" id="copyResponseBtn">Copy Template</button>
+            </div>
+            <div class="counter-text" id="counterResponseText">
+              "I do not recognize this request. I will reach out to customer service directly through the official website. Do not contact me again."
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Tavily Search Citations -->
+      <div class="sources-card" id="sourcesCard">
+        <div class="sources-header">
+          <span class="sources-icon">🌐</span>
+          <h3 class="sources-heading">Live Threat Intelligence &amp; Fraud Database Citations (Tavily Runtime API)</h3>
+        </div>
+        <p class="sources-subtitle">These live web sources were retrieved at runtime to cross-examine phone numbers, domains, and known scam campaigns:</p>
+        <div class="sources-grid" id="sourcesGrid">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture & Model Routing Breakdown for Judges -->
+    <section class="architecture-section">
+      <div class="arch-header text-center">
+        <span class="arch-badge">SYSTEM ARCHITECTURE</span>
+        <h2 class="arch-title">Engineered Specifically for the Nebius × NVIDIA Hackathon</h2>
+        <p class="arch-desc">
+          How ScamShield leverages <strong>Nemotron Ultra 70B</strong>, <strong>Nemotron Nano 8B</strong>, and <strong>Tavily</strong> to deliver an uncompromising consumer protection copilot.
+        </p>
+      </div>
+
+      <div class="arch-grid">
+        <div class="arch-card">
+          <div class="arch-num">01</div>
+          <div class="arch-tech">Tavily Search API</div>
+          <h4>The Grounding Layer</h4>
+          <p>Standard LLMs have frozen training cutoffs and can never know if a phishing domain was registered 3 hours ago. Tavily queries real-time fraud registries, phone spam records, and whois data dynamically.</p>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-num">02</div>
+          <div class="arch-tech">NVIDIA Nemotron Ultra 70B</div>
+          <h4>Deep Behavioral Reasoning</h4>
+          <p>Social engineering exploits psychological vulnerabilities (panic, authority, false urgency). We route to Nemotron Ultra 70B on Nebius Token Factory for deep forensic linguistic deconstruction.</p>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-num">03</div>
+          <div class="arch-tech">NVIDIA Nemotron Nano 8B</div>
+          <h4>Low-Latency Judicial Synthesis</h4>
+          <p>Following Nebius design guidelines, we route everyday synthesis and scoring to Nemotron Nano 8B—keeping the application responsive, ultra-fast, and computationally efficient.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <strong>ScamShield</strong> — Built for the <em>Nebius × NVIDIA Global AI Hackathon (October 2026)</em>
+        <br>
+        <span class="author-tag">Created by <strong>Akshay Maddula</strong> • Open Source under MIT License</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://github.com/akshaymaddula/scamshield" target="_blank" class="footer-link">GitHub Repository</a>
+        <span class="footer-divider">•</span>
+        <a href="https://nebiusglobalaihackathon.devpost.com/" target="_blank" class="footer-link">Devpost Submission</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
